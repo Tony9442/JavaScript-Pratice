@@ -1,77 +1,72 @@
-//Height order functions
-/*A Height order functions a fuction that takes another function 
-as an argurment or retrues a function from it.*/
+const array = [5, 1, 3, 2, 6, 10];
+// return c % 2 check Odd numbers 
+// return c % 2 ==== 0 Even numbers
+// return c > 4 To see the values greater 4
 
-function c(){
-  console.log('I see you')
-}
+// const isOdd = array.filter((c) =>{
 
-function b(c){
- c()
-}
-b(c)
+//   return c % 2;
+// })
 
-//Tasks
-//1. Calculate the area of radius cricles
-//2. Calculate the cicumference of radius cricles
-//3. Calculate the diameter of radius cricles
+// console.log(isOdd)
 
-const radius = [1, 2, 3, 4];
-
-const area = function(radius){
-  return Math.PI * radius * radius;
-};
-
-const cicumference = function(radius) {
-  return 2 * Math.PI * radius;
-};
-
-const diameter = function (radius) {
-  return 2 * radius;
-};
-
-
-const calculate = function (radius, logic) {
-  const output=[];
-  for(let i = 0; i < radius.length; i++){
-    output.push(logic(radius[i]));
+function findMax(array) {
+  let max = 0;
+  for (let i = 0; i < array.length; i++){
+    if(array[i] > max){
+      max = array[i]
+    }
   }
-  return output;
+  return max;
 }
+console.log(findMax(array))
+
+const check = array.reduce((max, curr) => {
+  if (curr > max){
+    max = curr;
+  }
+  return max;
+}, 0);
+console.log(check)
+
+const output = array.reduce((acc, curr) => {
+  acc = acc + curr;
+  return acc;
+ }, 0);
+ console.log(output)
 
 
-console.log(calculate(radius, area));
-console.log(calculate(radius, cicumference));
-console.log(calculate(radius, diameter));
+ const users = [
+   { fristName: "akshay", lastName: "Joe", age: 20 },
+   { fristName: "akhay", lastName: "Zoe", age: 10 },
+   { fristName: "akay", lastName: "Moe", age: 40 },
+   { fristName: "andrew", lastName: "Tate", age: 10 },
+ ];
 
+ //printout the list of full names for the users.
+ const see = users.map((user) => {
+  let fullName = user.fristName +" "+ user.lastName;
+  let age = user.age;
+  return `${fullName} ${age}`
 
-console.log('Hello');
+ })
+ console.log(see)
 
-setTimeout(() => {
-  console.log('Callback Function')
-}, 5000)
+ //Print array with the same age and how many they are
+ //We use reduce() When we have an array and need to through over that array and make out a single value out of it. 
+// The map(),filter(),reduce(), has power of chaining meaning they can be chained together
+ const result = users.filter((acc, curr) => {
+   if(acc.age < 30){
+    return acc
+   }
+ }).map((acc) => acc.fristName);
 
-console.log("End");
+ console.log(result);
 
-let startData = new Date().getTime();
-let endDate = startData;
-while(endDate < startData + 10000){
-  endDate = new Date().getTime();
-}
-console.log(endDate)
-
-let arr = [2, 3, 4, 5, 6, 8, 9]
-
-//Double the arr
-
-//Triple the arr
-
-//Binary of the numbers of arr.
-//Binary logic is x.toString(2); 
-
-const data = arr
-.map((ar) =>{
-  return ar.toString(2)
-})
-
-console.log(data)
+ const reduce = users.reduce((acc, curr) => {
+  if(curr.age < 30){
+    acc.push(curr.fristName);
+  };
+  return acc;
+ }, [])
+ console.log(reduce);
